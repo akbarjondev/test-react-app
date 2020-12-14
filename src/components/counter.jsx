@@ -7,7 +7,11 @@ class Counter extends Component {
 	// }
 
 	state = {
-		counter: 0,
+		value: this.props.value
+	};
+
+	handleIncrement = () => {
+		this.setState({ value: this.state.value + 1 });
 	};
 
 	styles = {
@@ -15,30 +19,26 @@ class Counter extends Component {
 		fontWeight: 'bold',
 	};
 
-	handleIncrement = (product) => {
-		this.setState({ counter: this.state.counter + 1 });
-	};
-
 	render() {
 		return (
 			<div>
 				<span className={this.getBadgeClasess()} style={this.styles}>{this.formatCount()}</span>
-				<button onClick={() => this.handleIncrement('product')} className="btn btn-dark btn-sm">Increment</button>
+				<button onClick={() => this.handleIncrement()} className="btn btn-dark btn-sm">Increment</button>
 			</div>
 		);
 	};
 
 	getBadgeClasess() {
 		let classes = 'badge m-2 badge-';
-		classes += this.state.counter === 0 ? 'warning' : 'primary';
+		classes += this.state.value === 0 ? 'warning' : 'primary';
 
 		return classes;
 	};
 
 	formatCount() {
-		const { counter } = this.state;
+		const { value } = this.state;
 
-		return counter === 0 ? 'Zero' : counter;
+		return value === 0 ? 'Zero' : value;
 	};
 }
 
